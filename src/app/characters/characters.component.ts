@@ -13,7 +13,7 @@ export class CharactersComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get("https://rickandmortyapi.com/api/character/1,2,3,4,5,6,7,8")
+    this.http.get("https://rickandmortyapi.com/api/character/"+randomChars())
       .subscribe(
         result => {
           this.characters = result;
@@ -24,4 +24,14 @@ export class CharactersComponent implements OnInit {
       )
   }
 
+}
+
+function randomChars () {
+  
+  let result:string = "";
+  for (let i = 0; i < 8; i++) {
+    result = result + (Math.floor(Math.random()*826+1)).toString() + ",";
+  }
+  result = result.slice(0, result.length-1);
+  return result;
 }
