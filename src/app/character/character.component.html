@@ -1,0 +1,23 @@
+<div class="container p-5">
+    <div class="row">
+        <div class="col-3 float-end" >
+            <img src={{character.image}}>
+        </div>
+        <div class="col-9">
+            <h1>{{character.name}}</h1>
+            <h2 *ngIf="character.status != ''">Status: {{character.status}}</h2>
+            <h2 *ngIf="character.species != ''">Species: {{character.species}}</h2>
+            <h2 *ngIf="character.type != ''">Type: {{character.type}}</h2>
+            <h2 *ngIf="character.gender != ''">Gender: {{character.gender}}</h2>
+            <h2 *ngIf="character.location.name != ''">Location: {{character.location.name}}</h2>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    List of episodes
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" *ngFor="let episode of character.episode">{{episode}}</a></li>
+                  </ul>
+            </div>
+        </div>
+    </div>
+</div>

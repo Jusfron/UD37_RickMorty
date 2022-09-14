@@ -7,12 +7,14 @@ import { CharactersComponent } from './characters/characters.component';
 import { AboutComponent } from './about/about.component';
 
 import {HttpClientModule} from '@angular/common/http';
+import { CharacterComponent } from './character/character.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharactersComponent,
-    AboutComponent
+    AboutComponent,
+    CharacterComponent
   ],
   imports: [
     BrowserModule,
