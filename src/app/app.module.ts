@@ -6,20 +6,25 @@ import { AppComponent } from './app.component';
 import { CharactersComponent } from './characters/characters.component';
 import { AboutComponent } from './about/about.component';
 
-import {HttpClientModule} from '@angular/common/http';
 import { CharacterComponent } from './character/character.component';
+import { AddCharacterComponent } from './add-character/add-character.component';
+
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharactersComponent,
     AboutComponent,
-    CharacterComponent
+    CharacterComponent,
+    AddCharacterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

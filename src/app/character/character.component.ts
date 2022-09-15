@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import { Character } from '../character.model';
 import { CharacterService } from '../character.service';
+import { CharactersService } from '../characters.service';
 
 @Component({
   selector: 'app-character',
@@ -11,20 +13,51 @@ export class CharacterComponent implements OnInit {
 
   character:any = null;
   id : any;
-  constructor(private characterServicio: CharacterService, private route: ActivatedRoute) {
+  message = '';
+  constructor(private characterServicio: CharacterService, private route: ActivatedRoute, private router: Router, private charactersService: CharactersService) {
     this.id = parseInt(this.route.snapshot.paramMap.get("id")||"[]");
    }
 
   ngOnInit(): void {
-    this.characterServicio.retornar(this.id)
-    .subscribe(
-      result => {
-        this.character = result;
-      },
-      error => {
-        console.log('oh no');
-      }
-    )
+    this.message = '';
+    this.charactersService.get(this.id)
+      .subscribe(
+        data => {
+          this.character = data;
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  updateCharacter(): void {
+    this.message = '';
+
+    this.charactersService.update(this.character.id, this.character)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.message = response.message ? response.message : "Updated successfully!";
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  deleteCharacter(): void {
+    this.charactersService.delete(this.character.id)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.router.navigate(['/characters']);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
 }
