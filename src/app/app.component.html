@@ -1,6 +1,6 @@
 
 
-<nav class="navbar navbar-expand-lg bg-primary">
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
   <div class="container-fluid">
       <a class="navbar-brand" href="#">Rick & Morty</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -22,9 +22,41 @@
               <li class="nav-item">
                   <a class="nav-link" routerLink="/about" routerLinkActive="active">About us</a>
               </li>
+              <li class="nav-item">
+                  <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin Board</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" routerLink="/user" routerLinkActive="active">User</a>
+              </li>
+          </ul>
+
+          <ul class="navbar-nav ul-auto" *ngIf="!isLoggedIn">
+            <li class="nav-item">
+                <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+            </li>
+            <li class="nav-item">
+                <a href="/login" class="nav-link" routerLink="login">Login</a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav ul-auto" *ngIf="isLoggedIn">
+            <li class="nav-item">
+                <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+            </li>
+            <li class="nav-item">
+                <a href class="nav-link" (click)="logout()">LogOut</a>
+            </li>
           </ul>
       </div>
   </div>
 </nav>
+
+<div class="container-fluid">
+    <h1 class="text-center p-5">Rick & Morty</h1>
+    <div class="row text-center">
+        <img id="logo-img" src="https://www.funiverso.com/wp-content/uploads/2021/03/img_205749_e1a699da455d93a1256592383518a8ef_1.jpg" class="logo-img-card">
+    </div>
+    
+</div>
 
 <router-outlet></router-outlet>

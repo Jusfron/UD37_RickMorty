@@ -8,9 +8,15 @@ import { AboutComponent } from './about/about.component';
 
 import { CharacterComponent } from './character/character.component';
 import { AddCharacterComponent } from './add-character/add-character.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { BoardAdminComponent } from './board-admin/board-admin.component';
+import { BoardUserComponent } from './board-user/board-user.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +24,12 @@ import { HttpClientModule } from '@angular/common/http';
     CharactersComponent,
     AboutComponent,
     CharacterComponent,
-    AddCharacterComponent
+    AddCharacterComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent,
+    BoardAdminComponent,
+    BoardUserComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
