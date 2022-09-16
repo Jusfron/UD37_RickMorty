@@ -8,7 +8,7 @@ const USER_KEY = 'auth-user'
 })
 export class TokenStorageService {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   signOut():void {
     window.sessionStorage.clear();

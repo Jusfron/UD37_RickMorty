@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'UD37_RickMorty';
 
-  private roles: string[] = [];
+  private role: string = "";
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
@@ -23,10 +23,9 @@ export class AppComponent {
 
     if(this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
+      this.role = user.role;
 
-      this.showAdminBoard = this.roles.includes('admin');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+      this.showAdminBoard = this.role.includes('admin');
 
       this.username = user.username;
     }

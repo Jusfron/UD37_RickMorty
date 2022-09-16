@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from 'src/app/character.model';
 import { CharactersService } from '../characters.service';
+import { Router } from '@angular/router';
+import { TokenStorageService } from '../_services/token-storage.service';
 
 @Component({
   selector: 'app-add-character',
@@ -20,9 +22,18 @@ export class AddCharacterComponent implements OnInit {
   };
   submitted = false;
 
-  constructor(private charactersService: CharactersService) { }
+  token: string | null = "";
+  role: string = "";
+
+
+  constructor(private charactersService: CharactersService, private router: Router, private tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
+    this.token = this.tokenStorageService.getToken();
+    console.log(this.token);
+    if(this.role == "user"){
+      this.return();
+    }
   }
 
   saveCharacter(): void {
@@ -58,6 +69,10 @@ export class AddCharacterComponent implements OnInit {
       location: '',
       image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg'
     };
+  }
+
+  return() {
+    this.router.navigate(["/home"]);
   }
 
 }
